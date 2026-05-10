@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@SiestaQQ | Official</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-purple">
+
+<!-- RGB GLOW BACKGROUND -->
+<div class="glow-bg"></div>
+<div class="glow-orb glow-1"></div>
+<div class="glow-orb glow-2"></div>
+<div class="glow-orb glow-3"></div>
+
+<!-- PARTICLE CANVAS -->
+<canvas id="particleCanvas"></canvas>
+
+<!-- TOP HEADER -->
+<header class="top-header">
+    <div class="header-left">
+        <!-- Profile Pic with Glow Ring -->
+        <div class="avatar-wrap">
+            <div class="avatar-ring"></div>
+            <img src="https://placehold.co/40x40/1a1a2e/9b59b6?text=S" alt="SiestaQQ" class="header-avatar">
+        </div>
+        <div>
+            <p class="header-name">@SiestaQQ</p>
+            <p class="header-role" data-my="Dev • Gamer • Creator" data-en="Dev • Gamer • Creator">Dev • Gamer • Creator</p>
+        </div>
+    </div>
+    <div class="header-right">
+        <!-- Visitor Counter -->
+        <div class="visitor-box">
+            <span class="visitor-icon">👁️</span>
+            <span class="visitor-count" id="visitorCount">1,247</span>
+        </div>
+        <!-- Language Toggle -->
+        <button class="lang-toggle" onclick="toggleLang()" id="langBtn">
+            <span>🇬🇧</span> <small>English</small>
+        </button>
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="main-content">
+
+    <!-- Hero Card -->
+    <section class="hero-card">
+        <div class="badge" data-my="✦ SiestaQQ အကြောင်း" data-en="✦ About SiestaQQ">✦ About SiestaQQ</div>
+        <h1><span class="grad" data-my="ဖန်တီးသူ" data-en="Creative">Creative</span> <span data-my="Developer" data-en="Developer">Developer</span></h1>
+        <p data-my="မင်္ဂလာပါ။ ကျွန်တော် SiestaQQ ပါ။<br>Website နဲ့ App တွေကို လှပတဲ့ Design တွေ Animation တွေနဲ့ ဖန်တီးပါတယ်။"
+           data-en="Hello. I'm SiestaQQ.<br>I create beautiful Websites and Apps with stunning Designs and Animations.">
+           Hello. I'm SiestaQQ.<br>I create beautiful Websites and Apps with stunning Designs and Animations.
+        </p>
+        <div class="chips">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>Python</span>
+            <span>UI/UX</span>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="st">
+            <b>5000+</b>
+            <small data-my="Followers" data-en="Followers">Followers</small>
+        </div>
+        <div class="st">
+            <b>6+</b>
+            <small data-my="Projects" data-en="Projects">Projects</small>
+        </div>
+        <div class="st">
+            <b>5+</b>
+            <small data-my="နှစ်" data-en="Years">Years</small>
+        </div>
+    </div>
+
+    <!-- Connect -->
+    <section class="connect">
+        <h3 data-my="ဆက်သွယ်ရန်" data-en="Connect With Me">Connect With Me</h3>
+        <a href="https://t.me/SiestaQQ" class="lnk tg"><span>📱</span> Telegram</a>
+        <a href="#" class="lnk ig" onclick="showAlert(event)"><span>📷</span> Instagram</a>
+        <a href="#" class="lnk gh" onclick="showAlert(event)"><span>💻</span> GitHub</a>
+    </section>
+
+    <p class="footer-text">© 2026 @SiestaQQ • All rights reserved</p>
+
+</main>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item active">
+        <span>🏠</span>
+        <small data-my="Home" data-en="Home">Home</small>
+    </a>
+</nav>
+
+<!-- Toast -->
+<div class="toast" id="toast">🔜 Coming Soon</div>
+
+<script>
+// ========== LANGUAGE ==========
+let currentLang = 'en';
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-my][data-en]').forEach(el => {
+        el.innerHTML = el.getAttribute('data-en');
+    });
+});
+
+function toggleLang() {
+    currentLang = currentLang === 'my' ? 'en' : 'my';
+    const btn = document.getElementById('langBtn');
+    
+    if (currentLang === 'en') {
+        btn.innerHTML = '<span>🇬🇧</span> <small>English</small>';
+    } else {
+        btn.innerHTML = '<span>🇲🇲</span> <small>မြန်မာ</small>';
+    }
+    
+    document.querySelectorAll('[data-my][data-en]').forEach(el => {
+        el.innerHTML = el.getAttribute(`data-${currentLang}`);
+    });
+}
+
+// ========== THEME CYCLE ==========
+const themes = ['purple', 'blue', 'green'];
+let themeIndex = 0;
+
+function cycleTheme() {
+    document.body.className = `theme-${themes[themeIndex]}`;
+    themeIndex = (themeIndex + 1) % themes.length;
+}
+
+setInterval(cycleTheme, 3000);
+
+// ========== VISITOR COUNTER ==========
+function randomVisitors() {
+    const base = 1247;
+    const random = Math.floor(Math.random() * 50);
+    const count = base + random;
+    document.getElementById('visitorCount').textContent = count.toLocaleString();
+}
+randomVisitors();
+setInterval(randomVisitors, 5000);
+
+// ========== PARTICLES ==========
+const canvas = document.getElementById('particleCanvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+class Particle {
+    constructor() {
+        this.reset();
+    }
+    reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.opacity = Math.random() * 0.5 + 0.1;
+    }
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+            this.reset();
+        }
+    }
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+        ctx.fill();
+    }
+}
+
+for (let i = 0; i < 80; i++) {
+    particles.push(new Particle());
+}
+
+function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+        p.update();
+        p.draw();
+    });
+    requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+// ========== COMING SOON ==========
+function showAlert(e) {
+    e.preventDefault();
+    const toast = document.getElementById('toast');
+    toast.textContent = currentLang === 'my' ? '🔜 မကြာမီလာမည်' : '🔜 Coming Soon';
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+}
+</script>
+</body>
+</html>
