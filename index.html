@@ -20,7 +20,6 @@
 <!-- TOP HEADER -->
 <header class="top-header">
     <div class="header-left">
-        <!-- Profile Pic with Glow Ring -->
         <div class="avatar-wrap">
             <div class="avatar-ring"></div>
             <img src="https://placehold.co/40x40/1a1a2e/9b59b6?text=S" alt="SiestaQQ" class="header-avatar">
@@ -31,12 +30,10 @@
         </div>
     </div>
     <div class="header-right">
-        <!-- Visitor Counter -->
         <div class="visitor-box">
             <span class="visitor-icon">👁️</span>
             <span class="visitor-count" id="visitorCount">1,247</span>
         </div>
-        <!-- Language Toggle -->
         <button class="lang-toggle" onclick="toggleLang()" id="langBtn">
             <span>🇬🇧</span> <small>English</small>
         </button>
@@ -46,7 +43,6 @@
 <!-- MAIN CONTENT -->
 <main class="main-content">
 
-    <!-- Hero Card -->
     <section class="hero-card">
         <div class="badge" data-my="✦ SiestaQQ အကြောင်း" data-en="✦ About SiestaQQ">✦ About SiestaQQ</div>
         <h1><span class="grad" data-my="ဖန်တီးသူ" data-en="Creative">Creative</span> <span data-my="Developer" data-en="Developer">Developer</span></h1>
@@ -63,7 +59,6 @@
         </div>
     </section>
 
-    <!-- Stats -->
     <div class="stats">
         <div class="st">
             <b>5000+</b>
@@ -79,7 +74,6 @@
         </div>
     </div>
 
-    <!-- Connect -->
     <section class="connect">
         <h3 data-my="ဆက်သွယ်ရန်" data-en="Connect With Me">Connect With Me</h3>
         <a href="https://t.me/SiestaQQ" class="lnk tg"><span>📱</span> Telegram</a>
@@ -101,6 +95,18 @@
 
 <!-- Toast -->
 <div class="toast" id="toast">🔜 Coming Soon</div>
+
+<!-- MUSIC PLAYER -->
+<div class="music-player" id="musicPlayer">
+    <button class="music-btn playing" onclick="toggleMusic()" id="musicBtn">
+        <span class="music-icon">🎵</span>
+    </button>
+    <span class="music-text">Est-ce que tu m'aimes</span>
+</div>
+
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 // ========== LANGUAGE ==========
@@ -200,6 +206,30 @@ function animateParticles() {
     requestAnimationFrame(animateParticles);
 }
 animateParticles();
+
+// ========== MUSIC PLAYER ==========
+let musicStarted = false;
+
+document.addEventListener('click', function() {
+    if (!musicStarted) {
+        document.getElementById('bgMusic').play();
+        document.getElementById('musicBtn').classList.add('playing');
+        musicStarted = true;
+    }
+}, { once: true });
+
+function toggleMusic() {
+    const music = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicBtn');
+    
+    if (music.paused) {
+        music.play();
+        btn.classList.add('playing');
+    } else {
+        music.pause();
+        btn.classList.remove('playing');
+    }
+}
 
 // ========== COMING SOON ==========
 function showAlert(e) {

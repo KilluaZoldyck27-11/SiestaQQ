@@ -155,3 +155,18 @@ body.theme-purple{
     opacity:0;transition:all 0.3s ease;
 }
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* ===== MUSIC PLAYER ===== */
+.music-player{
+    position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:150;
+    display:flex;align-items:center;gap:10px;background:rgba(19,19,43,0.9);
+    border:1px solid var(--border);padding:8px 16px;border-radius:25px;backdrop-filter:blur(10px)
+}
+.music-btn{
+    width:36px;height:36px;border-radius:50%;border:1px solid var(--border);
+    background:var(--badge-bg);cursor:pointer;display:flex;align-items:center;justify-content:center
+}
+.music-icon{font-size:16px}
+.music-btn.playing{border-color:var(--glow1);box-shadow:0 0 15px var(--glow1)}
+.music-btn.playing .music-icon{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.music-text{font-size:11px;color:var(--badge-text);font-weight:600;white-space:nowrap}
