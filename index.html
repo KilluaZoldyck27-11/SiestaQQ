@@ -208,26 +208,30 @@ function animateParticles() {
 animateParticles();
 
 // ========== MUSIC PLAYER ==========
-let musicStarted = false;
+const music = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
 
-document.addEventListener('click', function() {
-    if (!musicStarted) {
-        document.getElementById('bgMusic').play();
-        document.getElementById('musicBtn').classList.add('playing');
-        musicStarted = true;
-    }
-}, { once: true });
+// Auto-play on page load
+window.addEventListener('load', function() {
+    music.play().then(() => {
+        musicBtn.classList.add('playing');
+    }).catch(() => {
+        // If browser blocks auto-play, wait for first interaction
+        document.addEventListener('click', function playOnClick() {
+            music.play();
+            musicBtn.classList.add('playing');
+            document.removeEventListener('click', playOnClick);
+        }, { once: true });
+    });
+});
 
 function toggleMusic() {
-    const music = document.getElementById('bgMusic');
-    const btn = document.getElementById('musicBtn');
-    
     if (music.paused) {
         music.play();
-        btn.classList.add('playing');
+        musicBtn.classList.add('playing');
     } else {
         music.pause();
-        btn.classList.remove('playing');
+        musicBtn.classList.remove('playing');
     }
 }
 
