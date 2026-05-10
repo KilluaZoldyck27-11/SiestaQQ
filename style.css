@@ -114,3 +114,56 @@ body.theme-purple{
     .music-box{flex-direction:row;min-width:auto;padding:10px 14px;gap:8px}
     .music-box .music-text-box{font-size:10px}
 }
+/* ===== INFO CARD ===== */
+.info-card{
+    background:rgba(19,19,43,0.85);border:1px solid var(--border);
+    border-radius:18px;padding:20px;margin-bottom:20px;
+    backdrop-filter:blur(5px)
+}
+.info-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.info-icon{font-size:18px}
+.info-title{
+    font-size:15px;font-weight:700;
+    background:linear-gradient(135deg,var(--grad1),var(--grad2));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent
+}
+.info-divider{
+    width:100%;height:1px;
+    background:linear-gradient(90deg,transparent,var(--glow1),transparent);
+    margin-bottom:12px
+}
+.info-grid{display:flex;flex-direction:column;gap:10px}
+.info-item{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.03)
+}
+.info-label{color:var(--text-secondary);font-size:13px}
+.info-value{color:var(--text);font-size:13px;font-weight:600;text-align:right}
+.flag{font-size:16px;margin-left:4px}
+
+/* ===== INFO CHIPS ===== */
+.info-chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.info-chips span{
+    padding:3px 10px;border-radius:15px;
+    font-size:11px;font-weight:600;
+    border:1px solid var(--chip-border);
+    color:var(--chip-text);
+    background:rgba(255,255,255,0.02)
+}
+
+/* ===== CONNECT ROW ===== */
+.connect-row{display:flex;gap:12px;align-items:stretch}
+.connect-links{flex:1;display:flex;flex-direction:column;gap:10px}
+.connect-links .lnk{margin-bottom:0}
+
+/* ===== MUSIC BOX ===== */
+.music-box{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:rgba(19,19,43,0.85);border:1px solid var(--border);border-radius:14px;padding:14px 16px;min-width:100px;text-align:center;backdrop-filter:blur(5px)}
+.music-btn-box{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--badge-bg);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.music-icon-box{font-size:18px}
+.music-btn-box.playing{border-color:var(--glow1);box-shadow:0 0 15px var(--glow1)}
+.music-btn-box.playing .music-icon-box{animation:spin 1s linear infinite}
+.music-text-box{font-size:9px;color:var(--badge-text);font-weight:600;white-space:nowrap}
+
+/* ===== FOOTER ===== */
+.footer-text{text-align:center;color:#666;font-size:11px;margin-top:20px;padding:10px 0}
+.footer-credit{color:var(--badge-text);font-size:10px;margin-top:4px;letter-spacing:1px}
