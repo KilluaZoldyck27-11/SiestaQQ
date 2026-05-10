@@ -6,7 +6,14 @@
     <title>@SiestaQQ | Official</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="theme-purple">
+<body class="theme-green">
+
+<!-- SPACE BACKGROUND -->
+<div class="space-bg">
+    <div class="planet planet-1"></div>
+    <div class="planet planet-2"></div>
+    <div class="planet planet-3"></div>
+</div>
 
 <!-- RGB GLOW BACKGROUND -->
 <div class="glow-bg"></div>
@@ -134,7 +141,7 @@ function toggleLang() {
 }
 
 // ========== THEME CYCLE ==========
-const themes = ['purple', 'blue', 'green'];
+const themes = ['green', 'blue', 'purple'];
 let themeIndex = 0;
 
 function cycleTheme() {
@@ -142,7 +149,7 @@ function cycleTheme() {
     themeIndex = (themeIndex + 1) % themes.length;
 }
 
-setInterval(cycleTheme, 3000);
+setInterval(cycleTheme, 5000);
 
 // ========== VISITOR COUNTER ==========
 function randomVisitors() {
@@ -173,10 +180,10 @@ class Particle {
     reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.speedY = (Math.random() - 0.5) * 0.5;
-        this.opacity = Math.random() * 0.5 + 0.1;
+        this.size = Math.random() * 2 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.opacity = Math.random() * 0.4 + 0.1;
     }
     update() {
         this.x += this.speedX;
@@ -193,7 +200,7 @@ class Particle {
     }
 }
 
-for (let i = 0; i < 80; i++) {
+for (let i = 0; i < 60; i++) {
     particles.push(new Particle());
 }
 
@@ -211,13 +218,11 @@ animateParticles();
 const music = document.getElementById('bgMusic');
 const musicBtn = document.getElementById('musicBtn');
 
-// Try auto-play on load
 window.addEventListener('load', function() {
     music.play().then(() => {
         musicBtn.classList.add('playing');
     }).catch(() => {
         musicBtn.classList.remove('playing');
-        // Wait for first click to play
         document.addEventListener('click', function playOnClick() {
             music.play();
             musicBtn.classList.add('playing');
