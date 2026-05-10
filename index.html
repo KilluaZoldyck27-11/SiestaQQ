@@ -83,12 +83,25 @@
 
     <section class="connect">
         <h3 data-my="ဆက်သွယ်ရန်" data-en="Connect With Me">Connect With Me</h3>
-        <a href="https://t.me/SiestaQQ" class="lnk tg"><span>📱</span> Telegram</a>
-        <a href="#" class="lnk ig" onclick="showAlert(event)"><span>📷</span> Instagram</a>
-        <a href="#" class="lnk gh" onclick="showAlert(event)"><span>💻</span> GitHub</a>
+        <div class="connect-row">
+            <div class="connect-links">
+                <a href="https://t.me/SiestaQQ" class="lnk tg"><span>📱</span> Telegram</a>
+                <a href="#" class="lnk ig" onclick="showAlert(event)"><span>📷</span> Instagram</a>
+                <a href="#" class="lnk gh" onclick="showAlert(event)"><span>💻</span> GitHub</a>
+            </div>
+            <div class="music-box" id="musicBox">
+                <button class="music-btn-box playing" onclick="toggleMusic()" id="musicBtn">
+                    <span class="music-icon-box">🎵</span>
+                </button>
+                <span class="music-text-box">Est-ce que tu m'aimes</span>
+            </div>
+        </div>
     </section>
 
-    <p class="footer-text">© 2026 @SiestaQQ • All rights reserved</p>
+    <div class="footer-text">
+        <p>© 2026 @SiestaQQ. All rights reserved.</p>
+        <p class="footer-credit">Designed & Developed by SiestaQQ</p>
+    </div>
 
 </main>
 
@@ -102,14 +115,6 @@
 
 <!-- Toast -->
 <div class="toast" id="toast">🔜 Coming Soon</div>
-
-<!-- MUSIC PLAYER -->
-<div class="music-player" id="musicPlayer">
-    <button class="music-btn playing" onclick="toggleMusic()" id="musicBtn">
-        <span class="music-icon">🎵</span>
-    </button>
-    <span class="music-text">Est-ce que tu m'aimes</span>
-</div>
 
 <audio id="bgMusic" loop>
     <source src="music.mp3" type="audio/mpeg">
