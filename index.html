@@ -8,20 +8,6 @@
 </head>
 <body class="theme-purple">
 
-<!-- LOADING SCREEN -->
-<div class="loading-screen" id="loadingScreen">
-    <div class="loading-card">
-        <div class="loading-avatar">
-            <img src="https://placehold.co/80x80/1a1a2e/9b59b6?text=S" alt="SiestaQQ">
-        </div>
-        <h2>@SiestaQQ</h2>
-        <p>Welcome to my world</p>
-        <button class="enter-btn" onclick="enterSite()">
-            Enter Site ✨
-        </button>
-    </div>
-</div>
-
 <!-- RGB GLOW BACKGROUND -->
 <div class="glow-bg"></div>
 <div class="glow-orb glow-1"></div>
@@ -112,7 +98,7 @@
 
 <!-- MUSIC PLAYER -->
 <div class="music-player" id="musicPlayer">
-    <button class="music-btn" onclick="toggleMusic()" id="musicBtn">
+    <button class="music-btn playing" onclick="toggleMusic()" id="musicBtn">
         <span class="music-icon">🎵</span>
     </button>
     <span class="music-text">Est-ce que tu m'aimes</span>
@@ -123,13 +109,6 @@
 </audio>
 
 <script>
-// ========== ENTER SITE ==========
-function enterSite() {
-    document.getElementById('loadingScreen').classList.add('hidden');
-    document.getElementById('bgMusic').play();
-    document.getElementById('musicBtn').classList.add('playing');
-}
-
 // ========== LANGUAGE ==========
 let currentLang = 'en';
 
@@ -229,16 +208,31 @@ function animateParticles() {
 animateParticles();
 
 // ========== MUSIC PLAYER ==========
+const music = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
+
+// Try auto-play on load
+window.addEventListener('load', function() {
+    music.play().then(() => {
+        musicBtn.classList.add('playing');
+    }).catch(() => {
+        musicBtn.classList.remove('playing');
+        // Wait for first click to play
+        document.addEventListener('click', function playOnClick() {
+            music.play();
+            musicBtn.classList.add('playing');
+            document.removeEventListener('click', playOnClick);
+        }, { once: true });
+    });
+});
+
 function toggleMusic() {
-    const music = document.getElementById('bgMusic');
-    const btn = document.getElementById('musicBtn');
-    
     if (music.paused) {
         music.play();
-        btn.classList.add('playing');
+        musicBtn.classList.add('playing');
     } else {
         music.pause();
-        btn.classList.remove('playing');
+        musicBtn.classList.remove('playing');
     }
 }
 
